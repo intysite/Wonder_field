@@ -26,11 +26,14 @@ public class Tableau {
                     .forEach(i -> letters[i] = Character.toTitleCase(letter));
 
         }
-        showCurrentStatus();
     }
 
     public void showWholeWord() {
         System.out.println(correctAnswer.toUpperCase());
+    }
+
+    public boolean isContainedUnknownLetters() {
+        return Arrays.toString(letters).contains("_");
     }
 
     private boolean areAttributesNotEmpty() {

@@ -13,6 +13,7 @@ public class Game {
     public static final Scanner SCANNER = new Scanner(System.in);
     private List<String> questions = new ArrayList<>();
     private List<String> answers = new ArrayList<>();
+    private Tableau tableau = new Tableau();
 
     public void init() {
         System.out.println("Запуск игры \"Поле Чудес\" - подготовка к игре. Вам нужно ввести вопросы и ответы для игры.");
