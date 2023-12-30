@@ -9,7 +9,7 @@ public class Tableau {
     private Character[] letters;
 
     public void initializeTableau(String answer) {
-        this.correctAnswer = answer;
+        this.correctAnswer = answer.toLowerCase();
         this.letters = Stream.generate(() -> '_').limit(answer.length()).toArray(Character[]::new);
     }
 
@@ -21,13 +21,16 @@ public class Tableau {
 
     public void showLetter(Character letter) {
         if(areAttributesNotEmpty()) {
-            if(correctAnswer.contains(letter.toString())) {
-                IntStream.range(0, correctAnswer.length())
-                         .filter(i -> correctAnswer.charAt(i) == letter)
-                         .forEach(i -> letters[i] = Character.toTitleCase(letter));
-            } else System.out.println("Нет такой буквы!");
+            IntStream.range(0, correctAnswer.length())
+                    .filter(i -> correctAnswer.charAt(i) == letter)
+                    .forEach(i -> letters[i] = Character.toTitleCase(letter));
+
         }
         showCurrentStatus();
+    }
+
+    public void showWholeWord() {
+        System.out.println(correctAnswer.toUpperCase());
     }
 
     private boolean areAttributesNotEmpty() {
