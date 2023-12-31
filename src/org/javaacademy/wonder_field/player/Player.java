@@ -30,14 +30,15 @@ public class Player {
 
     public PlayerAnswer move() {
         System.out.printf("Ход игрока %s, %s\n", name, city);
+        System.out.println("Если хотите букву нажмите 'б' и enter, если хотите слово нажмите 'c' и enter");
         while (true) {
-            System.out.println("Если хотите букву нажмите 'б' и enter, если хотите слово нажмите 'c' и enter");
             String line = Game.SCANNER.nextLine();
             if(line.equals("б")) {
                 return new PlayerAnswer(AnswerType.LETTER, shoutLetter());
             } else if(line.equals("с")) {
                 return new PlayerAnswer(AnswerType.WORD, sayWord());
             }
+            System.out.println("Некорректное значение, введите 'б' или 'с'");
         }
     }
 }
