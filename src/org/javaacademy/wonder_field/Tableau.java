@@ -16,6 +16,7 @@ public class Tableau {
     public void showCurrentStatus() {
         if(areAttributesNotEmpty()) {
             Arrays.stream(letters).forEach(System.out::print);
+            System.out.println();
         }
     }
 
@@ -24,7 +25,7 @@ public class Tableau {
             IntStream.range(0, correctAnswer.length())
                     .filter(i -> correctAnswer.charAt(i) == letter)
                     .forEach(i -> letters[i] = Character.toTitleCase(letter));
-
+            showCurrentStatus();
         }
     }
 
