@@ -9,7 +9,7 @@ public class Game {
     public static final int NUMBER_OF_PLAYERS = 3;
     public static final int TOTAL_NUMBER_OF_ROUNDS = 4;
     public static final int NUMBER_OF_GROUP_ROUNDS = 3;
-    public static final int FINAL_ROUND_INDEX = 3;
+    public static final int FINAL_ROUND_INDEX = 4;
     public static final Scanner SCANNER = new Scanner(System.in);
     private List<String> questions = new ArrayList<>();
     private List<String> answers = new ArrayList<>();

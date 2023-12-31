@@ -11,6 +11,10 @@ public class Player {
         this.city = city;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private String shoutLetter() {
         while (true) {
             String line = Game.SCANNER.nextLine();
