@@ -30,6 +30,7 @@ public class Tableau {
     }
 
     public void showWholeWord() {
+        letters = correctAnswer.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
         System.out.println(correctAnswer.toUpperCase());
     }
 
