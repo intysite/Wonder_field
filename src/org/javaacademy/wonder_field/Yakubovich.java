@@ -17,7 +17,7 @@ public class Yakubovich {
     }
 
     public void inviteThreePlayers(List<Player> players, int roundNumber) {
-        if(roundNumber <= Game.NUMBER_OF_GROUP_ROUNDS) {
+        if(roundNumber < Game.NUMBER_OF_GROUP_ROUNDS) {
             System.out.printf("Якубович: приглашаю %d тройку игроков: ", roundNumber + 1);
             System.out.println(concatenateNames(players));
         } else if (roundNumber == Game.FINAL_ROUND_INDEX) {
