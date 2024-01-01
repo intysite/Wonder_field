@@ -10,7 +10,9 @@ public class Tableau {
 
     public void initializeTableau(String answer) {
         this.correctAnswer = answer.toLowerCase();
-        this.letters = Stream.generate(() -> '_').limit(answer.length()).toArray(Character[]::new);
+        this.letters = Stream.generate(() -> '_')
+                .limit(answer.length())
+                .toArray(Character[]::new);
     }
 
     public void showCurrentStatus() {
@@ -30,7 +32,9 @@ public class Tableau {
     }
 
     public void showWholeWord() {
-        letters = correctAnswer.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
+        letters = correctAnswer.chars()
+                .mapToObj(c -> (char) c)
+                .toArray(Character[]::new);
         System.out.println(correctAnswer.toUpperCase());
     }
 

@@ -19,10 +19,10 @@ public class Yakubovich {
 
     public void inviteThreePlayers(List<Player> players, int roundNumber) {
         if(roundNumber < Game.NUMBER_OF_GROUP_ROUNDS) {
-            System.out.printf("Якубович: приглашаю %d тройку игроков: ", roundNumber + 1);
+            System.out.printf("Якубович: приглашаю %d тройку игроков:\n", roundNumber + 1);
             System.out.println(concatenateNames(players));
         } else if (roundNumber == Game.FINAL_ROUND_INDEX) {
-            System.out.printf("Якубович: приглашаю победителей групповых этапов: %s", concatenateNames(players));
+            System.out.printf("Якубович: приглашаю победителей групповых этапов: %s\n", concatenateNames(players));
         }
     }
 
@@ -85,7 +85,7 @@ public class Yakubovich {
         } else if (result == 14) {
             System.out.println("Якубович: Ваши очки удваиваются!");
         } else {
-            System.out.printf("Якубович: %d очков на барабане! ", result);
+            System.out.printf("Якубович: %d очков на барабане!\n", result);
         }
     }
 
@@ -107,7 +107,9 @@ public class Yakubovich {
     }
 
     private String concatenateNames(List<Player> players) {
-        return players.stream().map(Player::getName).collect(Collectors.joining(", "));
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.joining(", "));
     }
 
 }

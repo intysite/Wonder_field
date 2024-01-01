@@ -37,7 +37,9 @@ public class Game {
             System.out.println(e.getMessage());
         }
 
-        Stream.generate(() -> "\n").limit(50).forEach(System.out::println);
+        Stream.generate(() -> "\n")
+                .limit(50)
+                .forEach(System.out::println);
     }
 
     private List<Player> createPlayers() {
@@ -51,7 +53,9 @@ public class Game {
     }
 
     private List<String> getPlayersNames(List<Player> players) {
-        return players.stream().map(Player::getName).collect(Collectors.toList());
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 
     private boolean isTableauFullyOpen() {
