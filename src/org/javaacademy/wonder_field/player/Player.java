@@ -5,6 +5,9 @@ import org.javaacademy.wonder_field.Game;
 public class Player {
     private final String name;
     private final String city;
+    private int scores;
+    private int money;
+
 
     public Player(String name, String city) {
         this.name = name;
@@ -17,6 +20,22 @@ public class Player {
 
     public String getCity() {
         return city;
+    }
+
+    public int getScores() {
+        return scores;
+    }
+
+    public void setScores(int scores) {
+        this.scores = scores;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     private String shoutLetter() {

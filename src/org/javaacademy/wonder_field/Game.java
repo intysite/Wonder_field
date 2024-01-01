@@ -29,7 +29,7 @@ public class Game {
             answers.add(SCANNER.nextLine());
         }
 
-        System.out.println("Иницализация закончена, игра начнется через 5 секунд");
+        System.out.println("Инициализация закончена, игра начнется через 5 секунд");
 
         try {
             Thread.sleep(5000);
@@ -59,10 +59,22 @@ public class Game {
     }
 
     private boolean moveOfPlayer(String question, Player player) {
+        int count = 0;
         while(!isTableauFullyOpen()) {
-            PlayerAnswer playerAnswer = player.move();
-            if(!yakubovich.isPlayerAnswerCorrect(playerAnswer, answers.get(questions.indexOf(question)), tableau)) {
+            yakubovich.rotateWheel();
+            if(!WheelOfFortune.rotateWheelOfFortune(player, yakubovich)) {
                 return false;
+            }
+            PlayerAnswer playerAnswer = player.move();
+            if(!yakubovich.isPlayerAnswerCorrect(player,
+                    playerAnswer,
+                    answers.get(questions.indexOf(question)),
+                    tableau)) {
+                return false;
+            }
+            count++;
+            if(count % 3 == 0) {
+                yakubovich.bringTwoBoxes(player);
             }
         }
         return true;
@@ -74,7 +86,7 @@ public class Game {
                 if (moveOfPlayer(questions.get(roundNumber), player)) {
                     if (isTableauFullyOpen()) {
                         winners.add(player);
-                        yakubovich.shoutAboutWinner(player.getName(), player.getCity(),
+                        yakubovich.shoutAboutWinner(player,
                                         roundNumber == FINAL_ROUND_INDEX);
                         return;
                     }
