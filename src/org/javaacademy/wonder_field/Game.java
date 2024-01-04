@@ -13,11 +13,11 @@ public class Game {
     public static final int NUMBER_OF_GROUP_ROUNDS = 3;
     public static final int FINAL_ROUND_INDEX = 3;
     public static final Scanner SCANNER = new Scanner(System.in);
-    private List<String> questions = new ArrayList<>();
-    private List<String> answers = new ArrayList<>();
-    private List<Player> winners = new ArrayList<>();
-    private Tableau tableau = new Tableau();
-    private Yakubovich yakubovich = new Yakubovich();
+    private final List<String> questions = new ArrayList<>();
+    private final List<String> answers = new ArrayList<>();
+    private final List<Player> winners = new ArrayList<>();
+    private final Tableau tableau = new Tableau();
+    private final Yakubovich yakubovich = new Yakubovich();
 
     public void init() {
         System.out.println("Запуск игры \"Поле Чудес\" - подготовка к игре. Вам нужно ввести вопросы и ответы для игры.");
