@@ -28,5 +28,11 @@ public enum Things {
         return this. ordinal() + 1 +  " " + description + " - " + cost;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public int getCost() {
+        return cost;
+    }
 }

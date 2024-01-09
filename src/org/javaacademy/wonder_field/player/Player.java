@@ -44,6 +44,14 @@ public class Player {
         this.money = money;
     }
 
+    public HashSet<Things> getThings() {
+        return things;
+    }
+
+    public void addThing(Things thing) {
+        things.add(thing);
+    }
+
     private String shoutLetter() {
         while (true) {
             String line = Game.SCANNER.nextLine();

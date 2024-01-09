@@ -108,16 +108,13 @@ public class Yakubovich {
         }
     }
 
-    public void chooseThings (Player player) {
-        System.out.println("Якубович: Выбирайте призы:");
+    public void chooseThings () {
+        System.out.println("Якубович: Выбирайте подарки:");
         Arrays.stream(Things.values()).map(Enum::toString).forEach(System.out::println);
-        while (true) {
-            System.out.println("Якубович:");
-        }
     }
 
-    private void sayPlayerScores(Player player) {
-        System.out.printf("Якубович: И вы набираете %d очков!\n", player.getScores());
+    public void sayPlayerScores(Player player) {
+        System.out.printf("Якубович: У вас %d очков!\n", player.getScores());
     }
 
     private String concatenateNames(List<Player> players) {

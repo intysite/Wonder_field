@@ -120,13 +120,39 @@ public class Game {
 
     private void superGame() {
         Player player = winners.get(FINAL_ROUND_INDEX + 1);
+        yakubovich.chooseThings();
+        do {
+            makeChooseThings(player);
+        } while (player.getScores() >= 100 || player.getThings().size() == Things.values().length);
 
+    }
+
+    private void makeChooseThings(Player player) {
+        while (true) {
+            System.out.println("Введите номер подарка:");
+            int thingsNumber = Integer.parseInt(Game.SCANNER.nextLine()) - 1;
+            if(thingsNumber < 0 || thingsNumber > Things.values().length) {
+                System.out.println("Некорректный выбор, введите число из списка");
+            } else if(player.getScores() < Things.values()[thingsNumber].getCost()) {
+                System.out.println("У Вас недостаточно очков для этого подарка");
+            } else if(player.getThings().contains(Things.values()[thingsNumber])) {
+                System.out.println("У Вас уже еть такой подарок");
+            } else {
+                Things thing = Things.values()[thingsNumber];
+                player.setScores(player.getScores() - thing.getCost());
+                player.addThing(thing);
+                System.out.println("Вы получаете " + thing.getDescription());
+                yakubovich.sayPlayerScores(player);
+                return;
+            }
+        }
     }
 
     public void start() {
         yakubovich.startShow();
         playAllGroupRounds();
         plaFinalRound();
+        superGame();
         yakubovich.endShow();
     }
 }
