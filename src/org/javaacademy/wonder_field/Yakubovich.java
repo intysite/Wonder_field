@@ -4,9 +4,15 @@ import org.javaacademy.wonder_field.player.AnswerType;
 import org.javaacademy.wonder_field.player.Player;
 import org.javaacademy.wonder_field.player.PlayerAnswer;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Yakubovich {
     public void startShow() {
@@ -99,6 +105,14 @@ public class Yakubovich {
             player.setMoney(player.getMoney() + 100);
         } else {
             System.out.println("Якубович: Пусто! Играем дальше.");
+        }
+    }
+
+    public void chooseThings (Player player) {
+        System.out.println("Якубович: Выбирайте призы:");
+        Arrays.stream(Things.values()).map(Enum::toString).forEach(System.out::println);
+        while (true) {
+            System.out.println("Якубович:");
         }
     }
 

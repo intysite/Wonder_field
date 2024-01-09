@@ -22,7 +22,7 @@ public class Game {
     public void init() {
         System.out.println("Запуск игры \"Поле Чудес\" - подготовка к игре. Вам нужно ввести вопросы и ответы для игры.");
 
-        for (int i = 1; i <= TOTAL_NUMBER_OF_ROUNDS; i++) {
+        for (int i = 1; i <= TOTAL_NUMBER_OF_ROUNDS + 1; i++) {
             System.out.printf("Введите вопрос #%d\n", i);
             questions.add(SCANNER.nextLine());
             System.out.printf("Введите ответ вопрос #%d\n", i);
@@ -116,6 +116,11 @@ public class Game {
         yakubovich.askRoundQuestion(questions.get(FINAL_ROUND_INDEX));
         tableau.showCurrentStatus();
         playRound(winners, FINAL_ROUND_INDEX);
+    }
+
+    private void superGame() {
+        Player player = winners.get(FINAL_ROUND_INDEX + 1);
+
     }
 
     public void start() {

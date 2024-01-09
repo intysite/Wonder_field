@@ -1,12 +1,18 @@
 package org.javaacademy.wonder_field.player;
 
 import org.javaacademy.wonder_field.Game;
+import org.javaacademy.wonder_field.Things;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Player {
     private final String name;
     private final String city;
     private int scores;
     private int money;
+    private final HashSet<Things> things = new HashSet<>();
 
 
     public Player(String name, String city) {
