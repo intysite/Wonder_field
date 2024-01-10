@@ -5,6 +5,7 @@ import org.javaacademy.wonder_field.player.PlayerAnswer;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Game {
@@ -18,6 +19,7 @@ public class Game {
     private final List<Player> winners = new ArrayList<>();
     private final Tableau tableau = new Tableau();
     private final Yakubovich yakubovich = new Yakubovich();
+
 
     public void init() {
         System.out.println("Запуск игры \"Поле Чудес\" - подготовка к игре. Вам нужно ввести вопросы и ответы для игры.");
@@ -90,8 +92,7 @@ public class Game {
                 if (moveOfPlayer(questions.get(roundNumber), player)) {
                     if (isTableauFullyOpen()) {
                         winners.add(player);
-                        yakubovich.shoutAboutWinner(player,
-                                        roundNumber == FINAL_ROUND_INDEX);
+                        yakubovich.shoutAboutWinner(player, roundNumber == FINAL_ROUND_INDEX);
                         return;
                     }
                 }
@@ -121,10 +122,31 @@ public class Game {
     private void superGame() {
         Player player = winners.get(FINAL_ROUND_INDEX + 1);
         yakubovich.chooseThings();
+
         do {
             makeChooseThings(player);
         } while (player.getScores() >= 100 || player.getThings().size() == Things.values().length);
 
+        SuperThings superThings = SuperThings.values()[new Random().nextInt(0, 5)];
+
+        if(yakubovich.offerSuperGame()) {
+            tableau.initializeTableau(answers.get(FINAL_ROUND_INDEX + 1));
+            yakubovich.askRoundQuestion(questions.get(FINAL_ROUND_INDEX + 1));
+            tableau.showCurrentStatus();
+            yakubovich.askThreeLetters();
+
+            IntStream.range(0, 3)
+                    .mapToObj(e -> player.shoutLetter())
+                    .forEach(e -> tableau.showLetter(e.charAt(0)));
+
+            System.out.println("Ваш ответ?");
+            String answer = SCANNER.nextLine();
+            if(answer.equals(answers.get(FINAL_ROUND_INDEX + 1))) {
+                yakubovich.announceSuperWinner(player, superThings);
+            } else {
+                yakubovich.sayFailSuperGame(superThings);
+            }
+        }
     }
 
     private void makeChooseThings(Player player) {
@@ -153,6 +175,7 @@ public class Game {
         playAllGroupRounds();
         plaFinalRound();
         superGame();
+        SCANNER.close();
         yakubovich.endShow();
     }
 }

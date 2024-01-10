@@ -3,9 +3,9 @@ package org.javaacademy.wonder_field.player;
 import org.javaacademy.wonder_field.Game;
 import org.javaacademy.wonder_field.Things;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Player {
     private final String name;
@@ -52,7 +52,7 @@ public class Player {
         things.add(thing);
     }
 
-    private String shoutLetter() {
+    public String shoutLetter() {
         while (true) {
             String line = Game.SCANNER.nextLine();
             if(line.length() > 1) {
@@ -81,5 +81,11 @@ public class Player {
             }
             System.out.println("Некорректное значение, введите 'б' или 'с'");
         }
+    }
+
+    public List<String> moveInSuperGame() {
+        return IntStream.range(0, 3)
+                .mapToObj(e -> shoutLetter())
+                .toList();
     }
 }

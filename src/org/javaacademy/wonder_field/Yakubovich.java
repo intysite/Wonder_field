@@ -3,16 +3,10 @@ package org.javaacademy.wonder_field;
 import org.javaacademy.wonder_field.player.AnswerType;
 import org.javaacademy.wonder_field.player.Player;
 import org.javaacademy.wonder_field.player.PlayerAnswer;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Yakubovich {
     public void startShow() {
@@ -108,11 +102,6 @@ public class Yakubovich {
         }
     }
 
-    public void chooseThings () {
-        System.out.println("Якубович: Выбирайте подарки:");
-        Arrays.stream(Things.values()).map(Enum::toString).forEach(System.out::println);
-    }
-
     public void sayPlayerScores(Player player) {
         System.out.printf("Якубович: У вас %d очков!\n", player.getScores());
     }
@@ -123,4 +112,41 @@ public class Yakubovich {
                 .collect(Collectors.joining(", "));
     }
 
+    public void chooseThings () {
+        System.out.println("Якубович: Выбирайте подарки:");
+        Arrays.stream(Things.values())
+                .map(Enum::toString)
+                .forEach(System.out::println);
+    }
+
+    public boolean offerSuperGame () {
+        System.out.println("Якубович: Желаете сыграть в суперигру?");
+        System.out.println("Введите да(д) или нет(н):");
+        while (true) {
+            String line = Game.SCANNER.nextLine();
+            if (line.length() > 1) {
+                System.out.println("Ошибка! Введите одну букву!");
+            } else if (line.equals("д")) {
+                System.out.println("Якубович: Играем суперигру!");
+                return true;
+            } else return false;
+        }
+    }
+
+    public void askThreeLetters() {
+        System.out.println("Якубович: Назовите три буквы!");
+    }
+
+    public void announceSuperWinner(Player player, SuperThings superThings) {
+        System.out.println("Якубович: Абсолютно верно! Вы сегодня забираете подарки:");
+        player.getThings().stream()
+                .map(Enum::toString)
+                .forEach(System.out::println);
+        System.out.printf("Сумма ваших денег составляет %d долларов\n", player.getMoney());
+        System.out.printf("И конечно же главный приз: %s\n", superThings.toString());
+    }
+
+    public void sayFailSuperGame(SuperThings superThings) {
+        System.out.printf("Якубович: Неверно. Вы могли выиграть %s", superThings.toString());
+    }
 }
