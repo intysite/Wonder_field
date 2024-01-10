@@ -8,6 +8,12 @@ public enum SuperThings {
     RACE("Участие в автогонке"),
     COURSES("Курсы Java + Spring framework");
 
+    private String description;
     SuperThings(String description) {
+    }
+
+    @Override
+    public String toString() {
+        return description;
     }
 }

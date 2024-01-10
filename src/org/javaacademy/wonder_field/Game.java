@@ -111,7 +111,7 @@ public class Game {
         }
     }
 
-    private void plaFinalRound() {
+    private void playFinalRound() {
         tableau.initializeTableau(answers.get(FINAL_ROUND_INDEX));
         yakubovich.inviteThreePlayers(winners, FINAL_ROUND_INDEX);
         yakubovich.askRoundQuestion(questions.get(FINAL_ROUND_INDEX));
@@ -120,7 +120,7 @@ public class Game {
     }
 
     private void superGame() {
-        Player player = winners.get(FINAL_ROUND_INDEX + 1);
+        Player player = winners.get(FINAL_ROUND_INDEX);
         yakubovich.chooseThings();
 
         do {
@@ -173,7 +173,7 @@ public class Game {
     public void start() {
         yakubovich.startShow();
         playAllGroupRounds();
-        plaFinalRound();
+        playFinalRound();
         superGame();
         SCANNER.close();
         yakubovich.endShow();
