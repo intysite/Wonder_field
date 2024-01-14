@@ -129,7 +129,9 @@ public class Yakubovich {
             } else if (line.equals("д")) {
                 System.out.println("Якубович: Играем суперигру!");
                 return true;
-            } else return false;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -137,16 +139,16 @@ public class Yakubovich {
         System.out.println("Якубович: Назовите три буквы!");
     }
 
-    public void announceSuperWinner(Player player, SuperThings superThings) {
+    public void announceSuperWinner(Player player, SuperThing superThing) {
         System.out.println("Якубович: Абсолютно верно! Вы сегодня забираете подарки:");
         player.getThings().stream()
                 .map(Enum::toString)
                 .forEach(System.out::println);
         System.out.printf("Сумма ваших денег составляет %d долларов\n", player.getMoney());
-        System.out.printf("И конечно же главный приз: %s\n", superThings.toString());
+        System.out.printf("И конечно же главный приз: %s\n", superThing.toString());
     }
 
-    public void sayFailSuperGame(SuperThings superThings) {
-        System.out.printf("Якубович: Неверно. Вы могли выиграть %s", superThings.toString());
+    public void sayFailSuperGame(SuperThing superThing) {
+        System.out.printf("Якубович: Неверно. Вы могли выиграть %s", superThing.toString());
     }
 }

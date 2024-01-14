@@ -1,6 +1,6 @@
 package org.javaacademy.wonder_field;
 
-public enum SuperThings {
+public enum SuperThing {
     AUTO("Автомобиль"),
     TOUR("Тур в Прагу"),
     DINNER("ужин на двоих в ресторане 3 звезды Мишлен"),
@@ -9,7 +9,7 @@ public enum SuperThings {
     COURSES("Курсы Java + Spring framework");
 
     private String description;
-    SuperThings(String description) {
+    SuperThing(String description) {
     }
 
     @Override

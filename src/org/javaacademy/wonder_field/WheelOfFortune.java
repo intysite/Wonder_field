@@ -5,8 +5,10 @@ import org.javaacademy.wonder_field.player.Player;
 import java.util.Random;
 
 public class WheelOfFortune {
-    public static boolean rotateWheelOfFortune(Player player, Yakubovich yakubovich) {
-        Random random = new Random();
+    Random random = new Random();
+
+    public boolean rotateWheelOfFortune(Player player, Yakubovich yakubovich) {
+
         int result = random.nextInt(1, 14) * 100;
         yakubovich.sayRotateResult(result);
         if(result == 1300) {

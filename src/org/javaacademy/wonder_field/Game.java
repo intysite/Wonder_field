@@ -6,11 +6,10 @@ import org.javaacademy.wonder_field.player.PlayerAnswer;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Game {
-    public static final int NUMBER_OF_PLAYERS = 3;
-    public static final int TOTAL_NUMBER_OF_ROUNDS = 4;
+    private static final int NUMBER_OF_PLAYERS = 3;
+    private static final int TOTAL_NUMBER_OF_ROUNDS = 4;
     public static final int NUMBER_OF_GROUP_ROUNDS = 3;
     public static final int FINAL_ROUND_INDEX = 3;
     public static final Scanner SCANNER = new Scanner(System.in);
@@ -19,6 +18,7 @@ public class Game {
     private final List<Player> winners = new ArrayList<>();
     private final Tableau tableau = new Tableau();
     private final Yakubovich yakubovich = new Yakubovich();
+    private final WheelOfFortune wheelOfFortune = new WheelOfFortune();
 
 
     public void init() {
@@ -39,9 +39,7 @@ public class Game {
             System.out.println(e.getMessage());
         }
 
-        Stream.generate(() -> "\n")
-                .limit(50)
-                .forEach(System.out::println);
+        System.out.println("\n".repeat(50));
     }
 
     private List<Player> createPlayers() {
@@ -68,7 +66,7 @@ public class Game {
         int count = 0;
         while(!isTableauFullyOpen()) {
             yakubovich.rotateWheel();
-            if(!WheelOfFortune.rotateWheelOfFortune(player, yakubovich)) {
+            if(!wheelOfFortune.rotateWheelOfFortune(player, yakubovich)) {
                 return false;
             }
             PlayerAnswer playerAnswer = player.move();
@@ -127,7 +125,7 @@ public class Game {
             makeChooseThings(player);
         } while (player.getScores() >= 100 || player.getThings().size() == Things.values().length);
 
-        SuperThings superThings = SuperThings.values()[new Random().nextInt(0, 5)];
+        SuperThing superThing = SuperThing.values()[new Random().nextInt(0, 5)];
 
         if(yakubovich.offerSuperGame()) {
             tableau.initializeTableau(answers.get(FINAL_ROUND_INDEX + 1));
@@ -142,9 +140,9 @@ public class Game {
             System.out.println("Ваш ответ?");
             String answer = SCANNER.nextLine();
             if(answer.equals(answers.get(FINAL_ROUND_INDEX + 1))) {
-                yakubovich.announceSuperWinner(player, superThings);
+                yakubovich.announceSuperWinner(player, superThing);
             } else {
-                yakubovich.sayFailSuperGame(superThings);
+                yakubovich.sayFailSuperGame(superThing);
             }
         }
     }
@@ -165,7 +163,7 @@ public class Game {
                 player.addThing(thing);
                 System.out.println("Вы получаете " + thing.getDescription());
                 yakubovich.sayPlayerScores(player);
-                return;
+                break;
             }
         }
     }

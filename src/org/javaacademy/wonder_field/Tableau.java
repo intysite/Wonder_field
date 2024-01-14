@@ -10,9 +10,8 @@ public class Tableau {
 
     public void initializeTableau(String answer) {
         this.correctAnswer = answer.toLowerCase();
-        this.letters = Stream.generate(() -> '_')
-                .limit(answer.length())
-                .toArray(Character[]::new);
+        this.letters = new Character[answer.length()];
+        Arrays.fill(this.letters, '_');
     }
 
     public void showCurrentStatus() {
